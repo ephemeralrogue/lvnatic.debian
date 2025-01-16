@@ -1,0 +1,21 @@
+- name: Install packages
+  ansible.builtin.apt:
+    pkg:
+      - curl
+      - apt-transport-https # necessary for VS Code
+      - code # VS Code
+      - gh # GitHub CLI
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io # necessary for Docker
+      - docker-buildx-plugin
+      - docker-compose-plugin
+      - uidmap # for rootless Docker
+      - make # necessary for ble.sh
+      - gawk # necessary for ble.sh
+    clean: true
+
+- name: Clear cache
+  ansible.builtin.apt:
+    autoclean: true
+    autoremove: true

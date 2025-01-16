@@ -1,0 +1,14 @@
+- name: Retrieve Oh My Bash script
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh
+    dest: /home/{{ user }}/ohmybash.sh
+    mode: '0755'
+
+- name: Run Oh My Bash script
+  ansible.builtin.script:
+    cmd: /home/{{ user }}/ohmybash.sh
+
+- name: Remove Oh My Bash script
+  ansible.builtin.file:
+    path: /home/{{ user }}/ohmybash.sh
+    state: absent

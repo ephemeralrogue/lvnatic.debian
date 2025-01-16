@@ -1,0 +1,53 @@
+- name: Set Git user name
+  community.general.git_config:
+    name: user.name
+    value: '{{ user }}'
+    scope: global
+
+- name: Set Git user email
+  community.general.git_config:
+    name: user.email
+    value: 5085876+ephemeralrogue@users.noreply.github.com
+    scope: global
+
+- name: Set Git signing key protocol to SSH
+  community.general.git_config:
+    name: gpg.format
+    value: ssh
+    scope: global
+
+- name: Assign git ssh key
+  community.general.git_config:
+    name: user.signingkey
+    value: /home/{{ user }}/.ssh/id_ed25519.pub
+    scope: global
+
+- name: Default to sign every commit
+  community.general.git_config:
+    name: commit.gpgsign
+    value: true
+    scope: global
+
+- name: Set default branch name to 'main'
+  community.general.git_config:
+    name: init.defaultBranch
+    value: main
+    scope: global
+
+- name: Set checkout alias
+  community.general.git_config:
+    name: alias.teleport
+    value: checkout
+    scope: global
+
+- name: Set branch alias
+  community.general.git_config:
+    name: alias.reality
+    value: branch
+    scope: global
+
+- name: Set remote alias
+  community.general.git_config:
+    name: alias.worlds
+    value: remote
+    scope: global

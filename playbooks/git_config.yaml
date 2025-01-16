@@ -1,0 +1,14 @@
+---
+- name: Configure git globally
+  hosts: localhost
+  connection: local
+
+  tasks:
+
+    - name: Run ssh tasks
+      ansible.builtin.include_tasks: tasks/ssh.yaml
+      tags: ssh
+
+    - name: Run git tasks
+      ansible.builtin.include_tasks: tasks/git.yaml
+      tags: git
