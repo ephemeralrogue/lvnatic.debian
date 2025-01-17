@@ -1,3 +1,9 @@
+- name: Install necessary packages
+  ansible.builtin.apt:
+    pkg:
+      - make
+      - gawk
+
 - name: Clone the Ble.sh repository # noqa: latest[git]
   ansible.builtin.git:
     repo: https://github.com/akinomyoga/ble.sh.git

@@ -11,8 +11,7 @@
       - docker-buildx-plugin
       - docker-compose-plugin
       - uidmap # for rootless Docker
-      - make # necessary for ble.sh
-      - gawk # necessary for ble.sh
+      - warp-terminal # Warp Terminal
     clean: true
 
 - name: Clear cache
