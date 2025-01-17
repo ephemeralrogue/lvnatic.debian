@@ -3,11 +3,6 @@
   hosts: localhost
   connection: local
 
-  tasks:
-
-    - name: Create ssh keypair
-      ansible.builtin.include_tasks: tasks/ssh.yaml
-
 - name: Set git config
   ansible.builtin.import_playbook: git_config.yaml
 
@@ -23,6 +18,8 @@
   hosts: localhost
   connection: local
   become: true
+  vars_files:
+    - ../vars.yaml
 
   tasks:
 
