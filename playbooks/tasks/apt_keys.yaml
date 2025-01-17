@@ -27,15 +27,15 @@
 - name: Add apt repository for Docker
   ansible.builtin.apt_repository:
     repo: deb [arch=arm64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable
-   
+
 # VS Code keyrings and sources list
 
-- name: Retrieve gpg key for VS Code
-  ansible.builtin.shell:
+- name: Retrieve gpg key for VS Code # noqa: command-instead-of-module no-changed-when
+  ansible.builtin.command:
     cmd: wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 
-- name: Set gpg key for VS Code in keyrings
-  ansible.builtin.shell:
+- name: Set gpg key for VS Code in keyrings # noqa: command-instead-of-shell no-changed-when
+  ansible.builtin.command:
     cmd: sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
 
 - name: Add apt repository for VS Code
@@ -46,4 +46,3 @@
   ansible.builtin.file:
     path: packages.microsoft.gpg
     state: absent
-
