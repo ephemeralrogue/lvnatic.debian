@@ -7,7 +7,7 @@
 - name: Set Git user email
   community.general.git_config:
     name: user.email
-    value: '{{ email}}'
+    value: '{{ email }}'
     scope: global
 
 - name: Set Git signing key protocol to SSH

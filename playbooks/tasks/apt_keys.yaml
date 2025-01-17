@@ -28,15 +28,38 @@
   ansible.builtin.apt_repository:
     repo: deb [arch=arm64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable
 
+# Warp Terminal keyrings and sources list
+
+- name: Retrieve gpg key for Warp
+  ansible.builtin.get_url:
+    url: https://releases.warp.dev/linux/keys/warp.asc
+    dest: /etc/apt/keyrings/warpdotdev.asc
+    mode: a+r
+
+- name: Convert asc key for Warp # noqa: no-changed-when
+  ansible.builtin.command:
+    cmd: gpg --dearmor /etc/apt/keyrings/warpdotdev.asc
+
+- name: Add apt repository for Warp
+  ansible.builtin.apt_repository:
+    repo: deb [arch=arm64 signed-by=/etc/apt/keyrings/warpdotdev.gpg] https://releases.warp.dev/linux/deb stable main
+
+- name: Remove stagnant gpg key for Warp
+  ansible.builtin.file:
+    path: /etc/apt/keyrings/warpdotdev.asc
+    state: absent
+
 # VS Code keyrings and sources list
 
 - name: Retrieve gpg key for VS Code # noqa: command-instead-of-module no-changed-when
-  ansible.builtin.command:
-    cmd: wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+  ansible.builtin.get_url:
+    url: https://packages.microsoft.com/keys/microsoft.asc
+    dest: /etc/apt/keyrings/microsoft.asc
+    mode: a+r
 
-- name: Set gpg key for VS Code in keyrings # noqa: command-instead-of-shell no-changed-when
+- name: Covert .asc key for VS Code # noqa: no-changed-when
   ansible.builtin.command:
-    cmd: sudo install -D -o root -g root -m 644 packages.microsoft.gpg /etc/apt/keyrings/packages.microsoft.gpg
+    cmd: gpg --dearmor /etc/apt/keyrings/packages.microsoft.gpg
 
 - name: Add apt repository for VS Code
   ansible.builtin.apt_repository:
@@ -44,5 +67,5 @@
 
 - name: Remove stagnant gpg key for VS Code
   ansible.builtin.file:
-    path: packages.microsoft.gpg
+    path: /etc/apt/keyrings/microsoft.asc
     state: absent
