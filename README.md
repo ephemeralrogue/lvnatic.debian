@@ -87,6 +87,8 @@ fill in the blanks:
 - "user" is the username you want to use;  
 - "email" should be the email you use for git.
 
+[back to contents](#contents)
+
 <a id="usage_local"></a>
 ### running playbooks locally
 
