@@ -2,6 +2,8 @@
 - name: Configure git globally
   hosts: localhost
   connection: local
+  vars_files:
+    - ../vars.yaml
 
   tasks:
 
