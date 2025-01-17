@@ -37,12 +37,31 @@ directory sharing through VirtFS, as i use [UTM](https://getutm.app/) to spin
 up VMs, and finally configures git with my preferred options. that's pretty 
 much it at the moment!
 
+<a id="contents"></a>
+## contents
+
+- [usage](#usage)
+  - [running playbooks locally](#usage_local)
+  - [running playbooks on remote hosts](#usage_remote)
+- [future development](#future_dev)
+- [contributing](#contributing)
+
+<a id="usage"></a>
 ## usage
 
-to get started using this collection, you'll need to set up passwordless sudo:
+this collection is not yet ready to be uploaded to Ansible Galaxy, therefore 
+the best way to make use of it at the moment is to clone it to the machine 
+on which you want to locally run playbooks.
+
+to get started, you'll need to set up passwordless sudo:
 ```bash
 sudo visudo
 ```
+running a playbook will assume passwordless sudo, as Ansible will not prompt 
+you to enter a password at each juncture it requires. if you like, you can 
+return and turn off passwordless sudo once you've completed running the 
+playbooks.  
+
 `visudo` provides checks on this file to ensure syntax is appropriate. use 
 other edits at your own discretion, caution, peril, whatever.
 find the line defining the `sudo` group's permissions and change it to:
@@ -56,42 +75,68 @@ locally (`hosts: localhost`):
 sudo apt update
 sudo apt install ansible
 ```
-once installed, clone this repository and navigate to the `playbooks` 
+once installed, clone this repository and navigate to it 
 directory:
 ```bash
 git clone https://github.com/ephemeralrogue/ephemeralrogue.bookworm.git
-cd /path/to/repository/playbooks
+cd /path/to/repository/
 ```
 
-### using standalone playbooks
+once here, make a copy of `vars.yaml.template`, rename it to `vars.yaml` and 
+fill in the blanks:  
+- "user" is the username you want to use;  
+- "email" should be the email you use for git.
+
+<a id="usage_local"></a>
+### running playbooks locally
 
 the main playbook is `provision_debian_vm.yaml` and can be run as:
 ```bash
-ansible-playbook -i 127.0.0.1, -e "user={ username } email={ email}" provision_debian_vm.yaml
+ansible-playbook -i 127.0.0.1, provision_debian_vm.yaml
 ```
-where "127.0.0.1" sets the targe as localhost, and "user" and "email" passes 
-your username as a variable into the playbooks and requisite tasks. obviously, 
-enter your own username and email and omit the brackets. also, that comma is 
+where "127.0.0.1" sets the targe as localhost. also, that comma is 
 fucking necessary. i failed to run this so many times when i was testing it 
 because i didn't know about that stupid comma.
 
 other playbooks you can run are `docker_prep.yaml`, `git_config.yaml`, and 
 `omb.yaml`, where "omb" runs the Oh My Bash install tasks.
 
-### using playbooks on remote hosts
+[back to contents](#contents)
+
+<a id="usage_remote"></a>
+### running playbooks on remote hosts
 
 if you want to run these playbooks on remote nodes, you'll need to edit 
 the `hosts` directive on the playbooks. checkout a new branch, make your 
 changes, and run from there. instead of passing an IP address with the 
 inventory flag `-i`, you can pass an inventory file or hosts directive.
 
+[back to contents](#contents)
+
+<a id="future_dev"></a>
 ## future development
 
-- i've started using [warp terminal](), and as this includes shell completion, 
-  i may forego blesh
+- i've started using [warp terminal](https://www.warp.dev/); as this includes 
+  shell completion, i may forego both blesh and Oh My Bash if i can figure out 
+  to install warp programmatically
 - create playbook to install kubernetes/minikube
-- create playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/)
+- create playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
   the collection already installs the necessary packages, just need to 
   provision this
-- 
+- set up ansible-lint GitHub action on PR
+- write unit and integration tests where applicable
+- migrate `command` and `shell` tasks to appropriate modules
+- set up debug points and prompts where applicable
 
+[back to contents](#contents)
+
+<a id="contributing"></a>
+## contributing
+
+if you would like to contribute to this project, feel free to fork and write! 
+please adhere to most best practices as developed by the Ansible community. 
+submit a PR when you feel your work is ready. and please adhere to the code of 
+conduct and contributing guidelines when discussing issues and proposed 
+changes.
+
+[back to contents](#contents)
