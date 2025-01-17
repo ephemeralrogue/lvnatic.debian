@@ -1,0 +1,9 @@
+---
+- name: Oh My Bash
+  hosts: localhost
+  connection: local
+
+  tasks:
+
+    - name: Run Oh My Bash tasks
+      ansible.builtin.include_tasks: tasks/ohmybash.yaml

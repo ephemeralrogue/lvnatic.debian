@@ -2,11 +2,11 @@
   ansible.builtin.get_url:
     url: https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh
     dest: /home/{{ user }}/ohmybash.sh
-    mode: '0755'
+    mode: '0644'
 
 - name: Run Oh My Bash script
   ansible.builtin.script:
-    cmd: /home/{{ user }}/ohmybash.sh
+    cmd: /home/{{ user }}/ohmybash.sh --unattended
 
 - name: Remove Oh My Bash script
   ansible.builtin.file:
