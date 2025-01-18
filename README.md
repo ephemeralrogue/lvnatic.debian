@@ -43,6 +43,7 @@ much it at the moment!
 - [usage](#usage)
   - [running playbooks locally](#usage_local)
   - [running playbooks on remote hosts](#usage_remote)
+- [project updates](#updates)
 - [future development](#future_dev)
 - [contributing](#contributing)
 
@@ -115,20 +116,30 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
 
 [back to contents](#contents)
 
+<a id="updates"></a>
+## project updates
+
+- [warp terminal](https://www.warp.dev/) tasks were added to retrieve gpg 
+  key and add apt repository to source list. Warp install is now automated.
+- with some exception, `command` and `shell` tasks were migrated to their 
+  respective `get_url` and `apt_repository` modules.
+
+see [CHANGELOG](./CHANGELOG.md) for full details.
+
+[back to contents](#contents)
+
 <a id="future_dev"></a>
 ## future development
 
-- i've started using [warp terminal](https://www.warp.dev/); as this includes 
-  shell completion, i may forego both blesh and Oh My Bash if i can figure out 
-  to install warp programmatically
 - create playbook to install kubernetes/minikube
 - create playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
   the collection already installs the necessary packages, just need to 
   provision this
 - set up ansible-lint GitHub action on PR
 - write unit and integration tests where applicable
-- migrate `command` and `shell` tasks to appropriate modules
 - set up debug points and prompts where applicable
+- look into providing the option of installing one terminal set over another 
+  during playbook execution
 
 [back to contents](#contents)
 
