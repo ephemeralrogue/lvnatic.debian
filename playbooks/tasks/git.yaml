@@ -34,6 +34,12 @@
     value: main
     scope: global
 
+- name: Set default branch list output to console
+  community.general.git_config:
+    name: pager.branch
+    value: false
+    scope: global
+
 - name: Set checkout alias
   community.general.git_config:
     name: alias.teleport
