@@ -1,0 +1,21 @@
+---
+- name: Kubectl setup and install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Setup up kubectl keyrings and source list
+      ansible.builtin.include_tasks: tasks/apt_keys_kubectl.yaml
+
+    - name: Install kubectl
+      ansible.builtin.apt:
+        pkg:
+          - kubectl
+        clean: true
+
+    - name: Clear cache
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true

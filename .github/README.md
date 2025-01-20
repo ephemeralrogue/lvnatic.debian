@@ -22,8 +22,8 @@
 ## the quick and dirty
 
 this collection is written for the express purpose of provisioning Debian 
-12 (codename: Bookworm), virtual machines (VM) locally. It prepares the 
-environment for and installs the following packages:
+12 (codename: Bookworm), virtual machines (VM) locally. The primary playbook 
+prepares the environment for and installs the following packages:
 
 - [Docker](https://docs.docker.com/engine/)
 - [Docker Compose](https://docs.docker.com/compose/) (plugin)
@@ -36,8 +36,13 @@ with two options for terminal tooling:
 2. install [Oh My Bash](https://github.com/ohmybash/oh-my-bash) and 
   [Ble.sh](https://github.com/akinomyoga/ble.sh), via the `provision_debian_omb.yaml` playbook.
 
-and finally configures git with my preferred options. that's pretty 
-much it at the moment!
+and finally configures git with my preferred options. additionally, playbooks 
+are provided to install:
+
+- [Minikube](https://minikube.sigs.k8s.io/docs/)
+- [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
+
+that's pretty much it at the moment!
 
 <a id="contents"></a>
 ## contents
@@ -103,10 +108,13 @@ other playbooks you can run to install apps independently are:
 - install_gh.yaml
 - install_warp.yaml
 - install_code.yaml
+- install_kubectl.yaml
+- install_minikube.yaml
 
-to install Docker, GitHub CLI, Warp Terminal, and VS Code respectively. 
-playbooks will be added as other tools become more prominent in my development 
-process.
+to install Docker, GitHub CLI, Warp Terminal, VS Code, kubectl, and Minikube 
+respectively. note that kubectl will be installed as part of the Minikube 
+playbook. additional playbooks will be added as other tools become more 
+prominent in my development process.
 
 `git_config.yaml` also exists as a standalone playbook to quickly configure 
 git.
@@ -148,7 +156,6 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 <a id="future_dev"></a>
 ## future development
 
-- create playbook to install kubernetes/minikube
 - create playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
   the collection already installs the necessary packages, just need to 
   provision this

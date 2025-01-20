@@ -1,0 +1,26 @@
+- name: Create keyrings-temp directory if it doesn't exist
+  ansible.builtin.file:
+    path: /etc/apt/keyrings-temp/
+    state: directory
+    mode: "0755"
+
+# Warp Terminal keyrings and sources list
+
+- name: Retrieve gpg key for kubectl
+  ansible.builtin.get_url:
+    url: https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key
+    dest: /etc/apt/keyrings-temp/Release.key
+    mode: a+r
+
+- name: Convert Release.key key for kubectl # noqa: no-changed-when
+  ansible.builtin.command:
+    cmd: gpg -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg --dearmor /etc/apt/keyrings-temp/Release.key
+
+- name: Add apt repository for kubectl
+  ansible.builtin.apt_repository:
+    repo: deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.32/deb/ /
+
+- name: Remove stagnant gpg key for kubectl
+  ansible.builtin.file:
+    path: /etc/apt/keyrings-temp/Release.key
+    state: absent
