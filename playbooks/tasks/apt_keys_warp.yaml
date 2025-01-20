@@ -1,0 +1,26 @@
+- name: Create keyrings-temp directory if it doesn't exist
+  ansible.builtin.file:
+    path: /etc/apt/keyrings-temp/
+    state: directory
+    mode: "0755"
+
+# Warp Terminal keyrings and sources list
+
+- name: Retrieve gpg key for Warp
+  ansible.builtin.get_url:
+    url: https://releases.warp.dev/linux/keys/warp.asc
+    dest: /etc/apt/keyrings-temp/warp.asc
+    mode: a+r
+
+- name: Convert asc key for Warp # noqa: no-changed-when
+  ansible.builtin.command:
+    cmd: gpg -o /etc/apt/keyrings/warpdotdev.gpg --dearmor /etc/apt/keyrings-temp/warp.asc
+
+- name: Add apt repository for Warp
+  ansible.builtin.apt_repository:
+    repo: deb [arch=arm64 signed-by=/etc/apt/keyrings/warpdotdev.gpg] https://releases.warp.dev/linux/deb stable main
+
+- name: Remove stagnant gpg key for Warp
+  ansible.builtin.file:
+    path: /etc/apt/keyrings-temp/warp.asc
+    state: absent

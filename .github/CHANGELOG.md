@@ -3,6 +3,13 @@
 - added task to set pager.branch to false in global git config
 - moved README and LICENSE to .github/
 - added CODEOWNERS and FUNDING.yaml
+- broke up apt_keys.yaml into files of respective tasks
+- created playbooks to install individual apps
+- created load_apt_keys.yaml with prompt for testing purposes
+- edited and updated provision playbooks to incorporate changes
+- removed unnecessary task and playbook files
+- removed Oh My Bash, Ble.sh playbooks and tasks
+- replaced `vars.yaml` with vars_prompt in `git_config.yaml`
 - corrected linting errors
 
 ## prerelease 01-17-25

@@ -1,0 +1,21 @@
+---
+- name: GitHub CLI setup and install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Setup up GitHub CLI keyrings and source list
+      ansible.builtin.include_tasks: tasks/apt_keys_gh.yaml
+
+    - name: Install gh
+      ansible.builtin.apt:
+        pkg:
+          - gh
+        clean: true
+
+    - name: Clear cache
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true

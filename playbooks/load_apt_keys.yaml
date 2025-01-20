@@ -1,0 +1,17 @@
+---
+- name: Load apt keys for specific app
+  hosts: localhost
+  connection: local
+  become: true
+  vars_prompt:
+
+    - name: appname
+      prompt: >
+        What keys do you want to load
+        ? Choose: docker (docker), github CLI (gh), vs code (vscode), warp terminal (warp)
+      private: false
+
+  tasks:
+
+    - name: Run tasks to retrieve app keys
+      ansible.builtin.include_tasks: tasks/apt_keys_{{ appname }}.yaml
