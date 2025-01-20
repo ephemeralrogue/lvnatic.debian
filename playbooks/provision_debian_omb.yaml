@@ -6,15 +6,21 @@
 - name: Set git config
   ansible.builtin.import_playbook: git_config.yaml
 
-- name: Docker Prep
+- name: Install core applications
   hosts: localhost
   connection: local
   become: true
 
-- name: Gut existing Docker installations
-  ansible.builtin.import_playbook: docker_prep.yaml
+- name: Install Docker
+  ansible.builtin.import_playbook: ./install_docker.yaml
 
-- name: Provision Debian VM
+- name: Install GitHub CLI
+  ansible.builtin.import_playbook: ./install_gh.yaml
+
+- name: Install VS Code
+  ansible.builtin.import_playbook: ./install_code.yaml
+
+- name: Setup Bash tooling
   hosts: localhost
   connection: local
   become: true
@@ -22,13 +28,6 @@
     - ../vars.yaml
 
   tasks:
-
-    - name: Update keyrings and sources lists
-      ansible.builtin.include_tasks:
-        file: tasks/apt_keys.yaml
-
-    - name: Install all the packages
-      ansible.builtin.include_tasks: tasks/apt_install.yaml
 
     - name: Install Oh My Bash
       ansible.builtin.include_tasks: tasks/ohmybash.yaml

@@ -1,0 +1,29 @@
+---
+- name: Docker setup and install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Prepare system for Docker services
+      ansible.builtin.include_tasks: tasks/docker_prep.yaml
+
+    - name: Setup up Docker keyrings and source list
+      ansible.builtin.include_tasks: tasks/apt_keys_docker.yaml
+
+    - name: Install Docker
+      ansible.builtin.apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+          - uidmap # for rootless Docker
+        clean: true
+
+    - name: Clear cache
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true

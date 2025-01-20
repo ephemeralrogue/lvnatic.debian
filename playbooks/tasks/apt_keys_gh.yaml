@@ -1,0 +1,17 @@
+- name: Create keyrings directory if it doesn't exist
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+# GitHub CLI keyrings and sources list
+
+- name: Retrieve gpg key for GitHub
+  ansible.builtin.get_url:
+    url: https://cli.github.com/packages/githubcli-archive-keyring.gpg
+    dest: /etc/apt/keyrings/githubcli-archive-keyring.gpg
+    mode: a+r
+
+- name: Add apt repository for GitHub CLI
+  ansible.builtin.apt_repository:
+    repo: deb [arch=arm64 signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main

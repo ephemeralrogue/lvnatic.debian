@@ -1,0 +1,21 @@
+---
+- name: Warp Terminal setup and install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Setup up Warp Terminal keyrings and source list
+      ansible.builtin.include_tasks: tasks/apt_keys_warp.yaml
+
+    - name: Install Warp Terminal
+      ansible.builtin.apt:
+        pkg:
+          - warp-terminal # Warp Terminal
+        clean: true
+
+    - name: Clear cache
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true

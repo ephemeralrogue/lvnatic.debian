@@ -1,0 +1,26 @@
+---
+- name: VS Code setup and install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Install apt dependencies
+      ansible.builtin.apt:
+        pkg:
+          - apt-transport-https
+
+    - name: Setup up VS Code keyrings and source list
+      ansible.builtin.include_tasks: tasks/apt_keys_vscode.yaml
+
+    - name: Install VS Code
+      ansible.builtin.apt:
+        pkg:
+          - code
+        clean: true
+
+    - name: Clear cache
+      ansible.builtin.apt:
+        autoclean: true
+        autoremove: true
