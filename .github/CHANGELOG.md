@@ -1,3 +1,10 @@
+## prerelease 01-19-25
+- added `ansible-lint` workflow
+- added task to set pager.branch to false in global git config
+- moved README and LICENSE to .github/
+- added CODEOWNERS and FUNDING.yaml
+- corrected linting errors
+
 ## prerelease 01-17-25
 - copied provisioning script and removed ohmybash and blesh from copy
 - updated `apt_keys.yaml` to acquire warp terminal keyring and add source list
