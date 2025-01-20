@@ -2,8 +2,14 @@
 - name: Configure git globally
   hosts: localhost
   connection: local
-  vars_files:
-    - ../vars.yaml
+  vars_prompt:
+
+    - name: user
+      prompt: enter your username for the system you are setting up.
+      private: false
+
+    - name: email
+      prompt: what email are you using for git shit?
 
   tasks:
 
