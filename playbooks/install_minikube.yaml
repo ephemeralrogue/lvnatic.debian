@@ -1,0 +1,30 @@
+---
+- name: Minikube setup
+  hosts: localhost
+  connection: local
+  become: true
+
+- name: Install kubectl as part of Minikube setup
+  ansible.builtin.import_playbook: ./install_kubectl.yaml
+
+- name: Continue with Minikube install
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Retrieve Minikube package
+      ansible.builtin.get_url:
+        url: https://storage.googleapis.com/minikube/releases/latest/minikube_latest_arm64.deb
+        dest: /tmp
+        mode: "0644"
+
+    - name: Install Minikube
+      ansible.builtin.apt:
+        deb: /tmp/minikube_latest_arm64.deb
+
+    - name: Remove .deb file
+      ansible.builtin.file:
+        path: /tmp/minikube_latest_arm64.deb
+        state: absent

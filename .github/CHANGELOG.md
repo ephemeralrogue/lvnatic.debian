@@ -10,6 +10,7 @@
 - removed unnecessary task and playbook files
 - removed Oh My Bash, Ble.sh playbooks and tasks
 - replaced `vars.yaml` with vars_prompt in `git_config.yaml`
+- added minikube and kubectl install tasks and playbooks
 - corrected linting errors
 
 ## prerelease 01-17-25
