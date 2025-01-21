@@ -1,3 +1,7 @@
+## prerelease 01-20-25
+- added playbook to remove apt packages
+- updated provision vm playbook
+
 ## prerelease 01-19-25
 - added `ansible-lint` workflow
 - added task to set pager.branch to false in global git config
