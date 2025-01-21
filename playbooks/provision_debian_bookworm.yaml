@@ -11,6 +11,9 @@
   connection: local
   become: true
 
+- name: Remove unnecessary default packages
+  ansible.builtin.import_playbook: ./remove_apt_packages.yaml
+
 - name: Install Docker
   ansible.builtin.import_playbook: ./install_docker.yaml
 
