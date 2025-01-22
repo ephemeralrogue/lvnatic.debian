@@ -29,14 +29,9 @@ prepares the environment for and installs the following packages:
 - [Docker Compose](https://docs.docker.com/compose/) (plugin)
 - [GitHub CLI](https://cli.github.com/)
 - [VS Code](https://code.visualstudio.com/)
+- [Warp Terminal](warp.dev)
 
-with two options for terminal tooling:
-1. install [Warp Terminal](warp.dev), via the `provision_debian_warp.yaml` 
-  playbook, or
-2. install [Oh My Bash](https://github.com/ohmybash/oh-my-bash) and 
-  [Ble.sh](https://github.com/akinomyoga/ble.sh), via the `provision_debian_omb.yaml` playbook.
-
-and finally configures git with my preferred options. additionally, playbooks 
+and configures git with my preferred options. additionally, other playbooks 
 are provided to install:
 
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
@@ -59,36 +54,49 @@ that's pretty much it at the moment!
 
 this collection is not yet ready to be uploaded to Ansible Galaxy, therefore 
 the best way to make use of it at the moment is to clone it to the machine 
-on which you want to locally run playbooks.
+on which you want to locally run playbooks.  
+*note: the {{ user }} variable assumes you are using the same username on 
+your system as you will use for git.*
 
-to get started, you'll need to set up passwordless sudo:
-```bash
-sudo visudo
-```
-running a playbook will assume passwordless sudo, as Ansible will not prompt 
-you to enter a password at each juncture it requires. if you like, you can 
-return and turn off passwordless sudo once you've completed running the 
-playbooks.  
+1. to get started, you'll need to set up passwordless sudo:
 
-`visudo` provides checks on this file to ensure syntax is appropriate. use 
-other edits at your own discretion, caution, peril, whatever.
-find the line defining the `sudo` group's permissions and change it to:
-```bash
-%sudo   ALL=(ALL:ALL) NOPASSWD:ALL
-```
-save and exit. then [install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) 
-on the machine you want to provision, as the playbooks are all written to run
-locally (`hosts: localhost`):
-```bash
-sudo apt update
-sudo apt install ansible
-```
-once installed, clone this repository and navigate to it 
-directory:
-```bash
-git clone https://github.com/ephemeralrogue/ephemeralrogue.bookworm.git
-cd /path/to/repository/
-```
+    ```sh
+    sudo visudo
+    ```
+
+    running a playbook will assume passwordless sudo, as Ansible will not 
+    prompt you to enter a password at each juncture it requires. if you like, 
+    you can return and turn off passwordless sudo once you've completed 
+    running the playbooks.  
+
+    `visudo` provides checks on this file to ensure syntax is appropriate. use 
+    other edits at your own discretion, caution, peril, whatever. find the 
+    line defining the `sudo` group's permissions and change it to:
+
+    ```sh
+    %sudo   ALL=(ALL:ALL) NOPASSWD:ALL
+    ```
+
+    save and exit.
+    
+2. [Install Ansible](https://docs.ansible.com/ansible/latest/installation_guide/index.html) 
+    on the machine you want to provision, as the playbooks are all written to 
+    run locally (`hosts: localhost`):
+
+    ```sh
+    sudo apt update
+    sudo apt install ansible
+    ```
+
+3. Clone this repository and navigate to its directory:
+
+    ```sh
+    git clone https://github.com/ephemeralrogue/ephemeralrogue.bookworm.git
+    cd /path/to/repository/
+    ```
+
+4. Copy `vars.yaml.template` and rename to `vars.yaml`. Fill in the blanks.  
+<br>
 
 [back to contents](#contents)
 
