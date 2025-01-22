@@ -1,0 +1,22 @@
+name: KICS Security Scan
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  security-scan:
+    name: KICS Scan
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+    - name: Run KICS Scan
+      uses: checkmarx/kics-github-action@94469746ec2c43de89a42fb9d2a80070f5d25b16
+      with:
+        path: '/'
+        token: ${{ secrets.KICS_TOKEN }}
+        output_path: results/
+        enable_comments: true
+    - name: Display KICS Results
+      run: |
+        cat results/results.json
