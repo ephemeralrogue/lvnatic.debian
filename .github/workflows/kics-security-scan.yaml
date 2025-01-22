@@ -16,7 +16,7 @@ jobs:
       - name: Run KICS Scan
         uses: checkmarx/kics-github-action@94469746ec2c43de89a42fb9d2a80070f5d25b16
         with:
-          path: '/'
+          path: /
           token: ${{ secrets.KICS_TOKEN }}
           output_path: results/
           enable_comments: true
