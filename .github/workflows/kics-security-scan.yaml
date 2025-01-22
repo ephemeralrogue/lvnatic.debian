@@ -19,4 +19,4 @@ jobs:
           enable_comments: true
       - name: Display KICS Results
         run: |
-          cat results/results.json
+          cat .github/workflows/results/results.json
