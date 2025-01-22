@@ -20,6 +20,3 @@ jobs:
           token: ${{ secrets.KICS_TOKEN }}
           output_path: results/
           enable_comments: true
-      - name: Display KICS Results
-        run: |
-          cat results/results.json
