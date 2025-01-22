@@ -6,10 +6,16 @@
 
   tasks:
 
+    # Most k* apps are installed with KDE Plasma
+
     - name: Remove apt packages
       ansible.builtin.apt:
         pkg:
           - libreoffice-*
+          - konqueror
+          - kate
+          - kmail*
+          - gimp
         state: absent
 
     - name: Remove dependencies and clear cache
