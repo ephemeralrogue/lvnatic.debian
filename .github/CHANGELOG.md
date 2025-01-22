@@ -1,6 +1,11 @@
+## prerelease 01-22-25
+- added `kics-security-scan.yaml` to PR workflow runs
+
 ## prerelease 01-21-25
 - added more packages to `remove-apt-packages.yaml`
     - when installing KDE Plasma Desktop, KDE adds numerous packages
+- added docker post-install support in `install_docker.yaml`
+- returned to `vars.yaml` for variable management
 
 ## prerelease 01-20-25
 - added playbook to remove apt packages
