@@ -1,3 +1,7 @@
+## prerelease 01-21-25
+- added more packages to `remove-apt-packages.yaml`
+    - when installing KDE Plasma Desktop, KDE adds numerous packages
+
 ## prerelease 01-20-25
 - added playbook to remove apt packages
 - updated provision vm playbook
