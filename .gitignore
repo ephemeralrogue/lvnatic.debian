@@ -1,2 +1,5 @@
 .vscode/
 vars.yaml
+
+# KICS
+results.json
