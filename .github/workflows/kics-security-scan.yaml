@@ -22,3 +22,6 @@ jobs:
           output_path: results/
           enable_comments: true
           enable_annotations: true
+      - name: Display KICS Results
+        run: |
+          cat results/results.json
