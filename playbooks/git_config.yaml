@@ -4,6 +4,17 @@
   connection: local
   vars_files:
     - ../vars.yaml
+  vars_prompt:
+
+    - name: default_branch_name
+      prompt: What name will you use as your default git branch (main)?
+      default: 'main'
+      private: false
+
+    - name: default_remote_name
+      prompt: What name will you use as your default git remote (origin)?
+      default: 'origin'
+      private: false
 
   tasks:
 

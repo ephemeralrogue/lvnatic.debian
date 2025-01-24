@@ -28,10 +28,16 @@
     value: true
     scope: global
 
-- name: Set default branch name to 'main'
+- name: Set default branch name
   community.general.git_config:
     name: init.defaultBranch
-    value: main
+    value: '{{ default_branch_name }}'
+    scope: global
+
+- name: Set default remote name
+  community.general.git_config:
+    name: clone.defaultRemoteName
+    value: '{{ default_remote_name }}'
     scope: global
 
 - name: Set default branch list output to console
