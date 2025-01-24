@@ -1,3 +1,8 @@
+## prerelease 01-24-25
+- added git config option to set default Remote Name
+- added prompts to customize default branch and remote names during playbook 
+    execution
+
 ## prerelease 01-22-25
 - added `kics-security-scan.yaml` to PR workflow runs
 
