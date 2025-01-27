@@ -31,8 +31,8 @@ prepares the environment for and installs the following packages:
 - [VS Code](https://code.visualstudio.com/)
 - [Warp Terminal](warp.dev)
 
-and configures git with my preferred options. additionally, other playbooks 
-are provided to install:
+and configures Docker to run in Rootless Mode and git with my preferred 
+options. additionally, other playbooks are provided to install:
 
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)

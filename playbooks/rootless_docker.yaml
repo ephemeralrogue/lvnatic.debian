@@ -1,0 +1,38 @@
+---
+- name: Setup Rootless Mode for Docker
+  hosts: localhost
+  connection: local
+  become: true
+  vars_files:
+    - ../vars.yaml
+
+  tasks:
+
+    - name: Disable Docker Service
+      ansible.builtin.systemd_service:
+        name: docker
+        enabled: false
+
+    - name: Remove root-Level Docker Socket
+      ansible.builtin.file:
+        path: /var/run/docker.sock
+        state: absent
+
+    - name: Install Rootless Mode and Enable
+      become: false
+      block:
+
+        - name: Run Docker Rootless Bash Script # noqa: no-changed-when
+          ansible.builtin.command:
+            cmd: dockerd-rootless-setuptool.sh install
+
+        - name: Start and Enable Docker Service under user
+          ansible.builtin.systemd_service:
+            name: docker
+            state: started
+            enabled: true
+            scope: user
+
+    - name: Enable Rootless Docker on login # noqa: no-changed-when
+      ansible.builtin.command:
+        cmd: loginctl enable-linger {{ user }}
