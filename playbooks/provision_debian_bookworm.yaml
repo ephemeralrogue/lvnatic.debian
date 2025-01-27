@@ -23,6 +23,9 @@
 - name: Install GitHub CLI
   ansible.builtin.import_playbook: ./install_gh.yaml
 
+- name: Install ProtonVPN
+  ansible.builtin.import_playbook: ./install_protonvpn.yaml
+
 - name: Install Warp Terminal
   ansible.builtin.import_playbook: ./install_warp.yaml
 

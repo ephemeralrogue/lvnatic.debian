@@ -1,0 +1,31 @@
+- name: Install ProtonVPN
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Retrieve ProtonVPN package
+      ansible.builtin.get_url:
+        url: https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.6_all.deb
+        dest: /tmp
+        mode: "0644"
+
+    - name: Add Apt Repository via .deb
+      ansible.builtin.apt:
+        deb: /tmp/protonvpn-stable-release_1.0.6_all.deb
+
+    - name: Refresh Apt Cache
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install ProtonVPN
+      ansible.builtin.apt:
+        pkg:
+          - proton-vpn-gnome-desktop
+        clean: true
+
+    - name: Remove .deb file
+      ansible.builtin.file:
+        path: /tmp/protonvpn-stable-release_1.0.6_all.deb
+        state: absent
