@@ -17,6 +17,9 @@
 - name: Install Docker
   ansible.builtin.import_playbook: ./install_docker.yaml
 
+- name: Rootless Mode for Docker
+  ansible.builtin.import_playbook: ./rootless_docker.yaml
+
 - name: Install GitHub CLI
   ansible.builtin.import_playbook: ./install_gh.yaml
 

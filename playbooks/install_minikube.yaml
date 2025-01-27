@@ -2,7 +2,6 @@
 - name: Minikube setup
   hosts: localhost
   connection: local
-  become: true
 
 - name: Install kubectl as part of Minikube setup
   ansible.builtin.import_playbook: ./install_kubectl.yaml
