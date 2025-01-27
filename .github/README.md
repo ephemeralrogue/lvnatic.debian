@@ -27,6 +27,7 @@ prepares the environment for and installs the following packages:
 
 - [Docker](https://docs.docker.com/engine/)
 - [Docker Compose](https://docs.docker.com/compose/) (plugin)
+- [ProtonVPN](https://protonvpn.com/)
 - [GitHub CLI](https://cli.github.com/)
 - [VS Code](https://code.visualstudio.com/)
 - [Warp Terminal](warp.dev)
@@ -103,9 +104,9 @@ your system as you will use for git.*
 <a id="usage_local"></a>
 ### running playbooks locally
 
-the main playbook is `provision_debian_warp.yaml` and can be run as such:
+the main playbook is `provision_debian_bookworm.yaml` and can be run as such:
 ```bash
-ansible-playbook -i 127.0.0.1, provision_debian_warp.yaml
+ansible-playbook -i 127.0.0.1, playbooks/provision_debian_bookworm.yaml
 ```
 where "127.0.0.1" sets the targe as localhost. also, that comma is 
 fucking necessary. i failed to run this so many times when i was testing it 
@@ -113,16 +114,19 @@ because i didn't know about that stupid comma.
 
 other playbooks you can run to install apps independently are:
 - install_docker.yaml
+- rootless_docker.yaml
 - install_gh.yaml
 - install_warp.yaml
 - install_code.yaml
 - install_kubectl.yaml
 - install_minikube.yaml
+- install_protonvpn.yaml
 
-to install Docker, GitHub CLI, Warp Terminal, VS Code, kubectl, and Minikube 
-respectively. note that kubectl will be installed as part of the Minikube 
-playbook. additional playbooks will be added as other tools become more 
-prominent in my development process.
+to install Docker, set up Rootless Mode for Docker, install GitHub CLI, 
+Warp Terminal, VS Code, kubectl, Minikube, and ProtonVPN respectively. note 
+that kubectl will be installed as part of the Minikube playbook. additional 
+playbooks will be added as other tools become more prominent in my development 
+process.
 
 `git_config.yaml` also exists as a standalone playbook to quickly configure 
 git.
@@ -156,6 +160,7 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
   playbooks.
 - ansible-lint GitHub Actions workflow was added to improve adherence to 
   Ansible community guidelines for Ansible Collections.
+- created playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
 
 see [CHANGELOG](./CHANGELOG.md) for full details.
 
@@ -164,7 +169,7 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 <a id="future_dev"></a>
 ## future development
 
-- create playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
+
   the collection already installs the necessary packages, just need to 
   provision this
 - include `spice-vdagent` and `bindfs` in provisioning scripts to enable 
