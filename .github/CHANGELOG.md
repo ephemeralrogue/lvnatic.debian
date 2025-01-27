@@ -1,3 +1,6 @@
+## prerelease 01-27-25
+- added playbook to enable Rootless Mode for Docker
+
 ## prerelease 01-24-25
 - added git config option to set default Remote Name
 - added prompts to customize default branch and remote names during playbook 
