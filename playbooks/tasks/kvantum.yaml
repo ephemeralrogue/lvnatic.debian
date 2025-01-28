@@ -1,0 +1,20 @@
+- name: Clone Kvantum Repository # noqa: latest[git]
+  ansible.builtin.git:
+    repo: https://github.com/tsujan/Kvantum
+    dest: /home/{{ user }}/
+    depth: 1
+
+- name: Make Build Directory
+  ansible.builtin.file:
+    path: /home/{{ user }}/Kvantum/Kvantum/build
+    state: directory
+    mode: '0755'
+
+- name: Build Kvantum Makefile # noqa: no-changed-when
+  ansible.builtin.command:
+    chdir: /home/{{ user }}/Kvantum/Kvantum/build
+    cmd: cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+
+- name: Build Kvantum
+  community.general.make:
+    chdir: /home/{{ user }}/Kvantum/Kvantum/build

@@ -37,6 +37,8 @@ options. additionally, other playbooks are provided to install:
 
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
+- [Kvantum Manager](https://github.com/tsujan/Kvantum/tree/master/Kvantum) 
+  for the upcoming Debian Trixie when installed with KDE Plasma
 
 that's pretty much it at the moment!
 
@@ -113,28 +115,31 @@ fucking necessary. i failed to run this so many times when i was testing it
 because i didn't know about that stupid comma.
 
 other playbooks you can run to install apps independently are:
-- install_docker.yaml
-- rootless_docker.yaml
-- install_gh.yaml
-- install_warp.yaml
+
 - install_code.yaml
+- install_docker.yaml
+- install_gh.yaml
 - install_kubectl.yaml
+- install_kvantum.yaml
 - install_minikube.yaml
 - install_protonvpn.yaml
+- install_warp.yaml
 
-to install Docker, set up Rootless Mode for Docker, install GitHub CLI, 
-Warp Terminal, VS Code, kubectl, Minikube, and ProtonVPN respectively. note 
-that kubectl will be installed as part of the Minikube playbook. additional 
-playbooks will be added as other tools become more prominent in my development 
-process.
+to install VS Code, Docker, GitHub CLI, kubectl, Kvantum Manager (for Debian 
+Trixie), Minikube, ProtonVPN, and Warp Terminal, respectively. note that 
+kubectl will be installed as part of the Minikube playbook. in addtion, the 
+following playbook can be run on its own:
 
-`git_config.yaml` also exists as a standalone playbook to quickly configure 
-git.
+- git_config.yaml
+- load_apt_keys.yaml
+- remove_apt_packages.yaml
+- rootless_docker.yaml
+
+more playbooks will be added as other tools become more prominent in my 
+development, design, or general enjoyment process.
 
 *note: when running the main provisioning or git config playbooks, you will 
-be prompted to enter your username and email. this is specifically to 
-configure git. your data is not collected, stored, or used in any other way 
-or for any other purpose.*
+be prompted to designate default branch and remote names.*
 
 [back to contents](#contents)
 
@@ -169,14 +174,12 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 <a id="future_dev"></a>
 ## future development
 
-
-  the collection already installs the necessary packages, just need to 
-  provision this
 - include `spice-vdagent` and `bindfs` in provisioning scripts to enable 
   clipboard sharing and directory sharing through VirtFS, as i use 
   [UTM](https://getutm.app/) to spin up VMs
 - write unit and integration tests where applicable
 - set up debug points and prompts where applicable
+- review existing cmake modules for possible inclusion
 
 [back to contents](#contents)
 
