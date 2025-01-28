@@ -3,6 +3,7 @@
 - added playbook to install ProtonVPN
 - added playbook to install Kvantum Manager
 - updated provisioning playbook
+- patched Warp Terminal install
 
 ## prerelease 01-24-25
 - added git config option to set default Remote Name

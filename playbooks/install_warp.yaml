@@ -1,21 +1,22 @@
 ---
-- name: Warp Terminal setup and install
+- name: Install Warp Terminal
   hosts: localhost
   connection: local
   become: true
 
   tasks:
 
-    - name: Setup up Warp Terminal keyrings and source list
-      ansible.builtin.include_tasks: tasks/apt_keys_warp.yaml
+    - name: Retrieve Warp Terminal package
+      ansible.builtin.get_url:
+        url: https://app.warp.dev/download?package=deb_arm64
+        dest: /tmp/warp.deb
+        mode: a+r
 
-    - name: Install Warp Terminal
+    - name: Install Warp
       ansible.builtin.apt:
-        pkg:
-          - warp-terminal # Warp Terminal
-        clean: true
+        deb: /tmp/warp.deb
 
-    - name: Clear cache
-      ansible.builtin.apt:
-        autoclean: true
-        autoremove: true
+    - name: Remove .deb file
+      ansible.builtin.file:
+        path: /tmp/warp.deb
+        state: absent
