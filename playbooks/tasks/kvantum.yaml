@@ -1,7 +1,7 @@
 - name: Clone Kvantum Repository # noqa: latest[git]
   ansible.builtin.git:
     repo: https://github.com/tsujan/Kvantum
-    dest: /home/{{ user }}/
+    dest: /home/{{ user }}/Kvantum
     depth: 1
 
 - name: Make Build Directory
