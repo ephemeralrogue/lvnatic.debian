@@ -1,0 +1,27 @@
+# For use when installing Debian Trixie with KDE Plasma when the
+# SDDM configuration is not available in the KDE System Settings GUI
+---
+- name: Add SDDM Config Option to KDE Settings
+  hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Prompt to verify package is needed
+      ansible.builtin.pause:
+        prompt: >
+          "This playbook will install the kde-config-sddm package. Verify the SDDM configuration option is not available before continuing:
+          system settings > Colors & Themes > Login Screen (SDDM). If configuration is not present, press enter to continue. If it is present
+          , press `ctrl+c` to exit the playbook."
+
+    - name: Add Debian Experimental Repository
+      ansible.builtin.apt_repository:
+        repo: deb http://ftp.us.debian.org/debian experimental main
+        update_cache: true
+
+    - name: Install kde-config-sddm
+      ansible.builtin.apt:
+        pkg:
+          - kde-config-sddm
+        clean: true
