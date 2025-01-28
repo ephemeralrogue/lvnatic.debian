@@ -1,0 +1,32 @@
+---
+- name: Install Kvantum Manager
+  hosts: localhost
+  connection: local
+  become: true
+  vars_files:
+    - ../vars.yaml
+
+  tasks:
+
+    - name: Install Necessary Packages
+      ansible.builtin.apt:
+        pkg:
+          - cmake
+          - g++
+          - libkf6windowsystem-dev
+          - make
+          - qt6-base-dev
+          - qt6-svg-dev
+        clean: true
+
+    - name: Clone, Build, and Make Kvantum
+      become: false
+      block:
+
+        - name: Run user Kvantum Build tasks
+          ansible.builtin.include_tasks: tasks/kvantum.yaml
+
+    - name: Install Kvantum # noqa: no-changed-when
+      ansible.builtin.command:
+        chdir: /home/{{ user }}/Kvantum/Kvantum/build
+        cmd: make install

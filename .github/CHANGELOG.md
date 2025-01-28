@@ -1,6 +1,7 @@
 ## prerelease 01-27-25
 - added playbook to enable Rootless Mode for Docker
 - added playbook to install ProtonVPN
+- added playbook to install Kvantum Manager
 - updated provisioning playbook
 
 ## prerelease 01-24-25
