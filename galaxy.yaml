@@ -5,7 +5,7 @@
 namespace: ephemeralrogue
 
 # The name of the collection. Has the same character restrictions as 'namespace'
-name: bookworm
+name: debian
 
 # The version of the collection. Must be compatible with semantic versioning
 version: 1.0.0
@@ -20,7 +20,7 @@ authors:
 
 ### OPTIONAL but strongly recommended
 # A short summary description of the collection
-description: this collection is designed to quickly provision Debian Bookworm virtual machines locally
+description: this collection is designed to quickly provision Debian 12+ virtual machines locally
 
 # Either a single license or a list of licenses for content inside of a collection. Ansible Galaxy currently only
 # accepts L(SPDX,https://spdx.org/licenses/) licenses. This key is mutually exclusive with 'license_file'
@@ -33,7 +33,7 @@ license_file: 'LICENSE'
 
 # A list of tags you want to associate with the collection for indexing/searching. A tag name has the same character
 # requirements as 'namespace' and 'name'
-tags: [debian, bookworm, virtual machine]
+tags: [debian, bookworm, trixie, virtual machine]
 
 # Collections that this collection requires to be installed for it to be usable. The key of the dict is the
 # collection label 'namespace.name'. The value is a version range
@@ -42,16 +42,16 @@ tags: [debian, bookworm, virtual machine]
 dependencies: {community.general}
 
 # The URL of the originating SCM repository
-repository: https://github.com/ephemeralrogue/ephemeralrogue.bookworm
+repository: https://github.com/ephemeralrogue/ephemeralrogue.debian
 
 # The URL to any online docs
 documentation: http://docs.example.com
 
 # The URL to the homepage of the collection/project
-homepage: https://github.com/ephemeralrogue/ephemeralrogue.bookworm
+homepage: https://github.com/ephemeralrogue/ephemeralrogue.debian
 
 # The URL to the collection issue tracker
-issues: https://github.com/ephemeralrogue/ephemeralrogue.bookworm/issues
+issues: https://github.com/ephemeralrogue/ephemeralrogue.debian/issues
 
 # A list of file glob-like patterns used to filter any files or directories that should not be included in the build
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This

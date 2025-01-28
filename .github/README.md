@@ -1,10 +1,10 @@
-<h1 align="center">{ e }.bookworm ansible collection</h1>
+<h1 align="center">{ e }.debian ansible collection</h1>
 
 <p align="center">
-  <img src="../assets/e.bookworm-emblem.png" alt="ephemeralrogue.bookworm-emblem" width="120px" height="120px"/>
+  <img src="./assets/e.debian-emblem.png" alt="ephemeralrogue.debian-emblem" width="120px" height="120px"/>
   <br>
-  <i>ephemeralrogue.bookworm is an Ansible collection written to provision
-    <br> Debian Bookworm virtual machines locally.</i>
+  <i>ephemeralrogue.debian is an Ansible collection written to provision
+    <br> Debian 12+ virtual machines locally.</i>
   <br>
 </p>
 
@@ -22,8 +22,8 @@
 ## the quick and dirty
 
 this collection is written for the express purpose of provisioning Debian 
-12 (codename: Bookworm), virtual machines (VM) locally. The primary playbook 
-prepares the environment for and installs the following packages:
+v12+ virtual machines (VM) locally. The primary playbook prepares the 
+environment for and installs the following packages:
 
 - [Docker](https://docs.docker.com/engine/)
 - [Docker Compose](https://docs.docker.com/compose/) (plugin)
@@ -96,7 +96,7 @@ your system as you will use for git.*
 3. Clone this repository and navigate to its directory:
 
     ```sh
-    git clone https://github.com/ephemeralrogue/ephemeralrogue.bookworm.git
+    git clone https://github.com/ephemeralrogue/ephemeralrogue.debian.git
     cd /path/to/repository/
     ```
 
@@ -108,13 +108,16 @@ your system as you will use for git.*
 <a id="usage_local"></a>
 ### running playbooks locally
 
-the main playbook is `provision_debian_bookworm.yaml` and can be run as such:
+the main playbook is `provision_debian.yaml` and can be run as such:
 ```bash
 ansible-playbook -i 127.0.0.1, playbooks/provision_debian_bookworm.yaml
 ```
 where "127.0.0.1" sets the targe as localhost. also, that comma is 
 fucking necessary. i failed to run this so many times when i was testing it 
-because i didn't know about that stupid comma.
+because i didn't know about that stupid comma. this playbook will provide 
+a basic set of development tools for both 
+[Bookworm](https://www.debian.org/releases/bookworm/) and 
+[Trixie](https://www.debian.org/releases/trixie/).
 
 other playbooks you can run to install apps independently are:
 
@@ -173,6 +176,7 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
   Plasma 6 on Debian testing version
 - created playbook to enable clipboard and directory sharing through VirtFS 
   with, [UTM](https://getutm.app/) when spinning up VMs
+- reconfigured project to support Debian 12+
 
 see [CHANGELOG](./CHANGELOG.md) for full details.
 
@@ -181,10 +185,10 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 <a id="future_dev"></a>
 ## future development
 
+- find cmake module with support for current Ansible versions
 - write unit and integration tests where applicable
 - set up debug points and prompts where applicable
 - review existing cmake modules for possible inclusion
-- reconfigure project to support Debian 12+
 
 [back to contents](#contents)
 
