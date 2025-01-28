@@ -1,3 +1,4 @@
+# Versioning here is specifically for Debian Trixie running KDE Plasma 6
 ---
 - name: Install Kvantum Manager
   hosts: localhost

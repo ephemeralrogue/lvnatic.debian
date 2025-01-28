@@ -39,6 +39,8 @@ options. additionally, other playbooks are provided to install:
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
 - [Kvantum Manager](https://github.com/tsujan/Kvantum/tree/master/Kvantum) 
   for the upcoming Debian Trixie when installed with KDE Plasma
+- [kde-config-sddm](https://packages.debian.org/experimental/kde-config-sddm) 
+  for the test version of Debian: Trixie, when installed with KDE Plasma
 
 that's pretty much it at the moment!
 
@@ -119,16 +121,17 @@ other playbooks you can run to install apps independently are:
 - install_code.yaml
 - install_docker.yaml
 - install_gh.yaml
+- install_kdeconfigsddm.yaml
 - install_kubectl.yaml
 - install_kvantum.yaml
 - install_minikube.yaml
 - install_protonvpn.yaml
 - install_warp.yaml
 
-to install VS Code, Docker, GitHub CLI, kubectl, Kvantum Manager (for Debian 
-Trixie), Minikube, ProtonVPN, and Warp Terminal, respectively. note that 
-kubectl will be installed as part of the Minikube playbook. in addtion, the 
-following playbook can be run on its own:
+to install VS Code, Docker, GitHub CLI, `kde-config-sddm` (for Debian Trixie), 
+kubectl, Kvantum Manager (for Debian Trixie), Minikube, ProtonVPN, and Warp 
+Terminal, respectively. note that kubectl will be installed as part of the 
+Minikube playbook. in addtion, the following playbooks can be run on their own:
 
 - git_config.yaml
 - load_apt_keys.yaml
@@ -165,7 +168,9 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
   playbooks.
 - ansible-lint GitHub Actions workflow was added to improve adherence to 
   Ansible community guidelines for Ansible Collections.
-- created playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/);
+- created playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/)
+- created playbook to install configuration settings for SDDM when using KDE
+  Plasma 6 on Debian testing version
 
 see [CHANGELOG](./CHANGELOG.md) for full details.
 
@@ -180,6 +185,7 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 - write unit and integration tests where applicable
 - set up debug points and prompts where applicable
 - review existing cmake modules for possible inclusion
+- reconfigure project to support Debian 12+
 
 [back to contents](#contents)
 

@@ -1,3 +1,7 @@
+## prerelease 01-28-25
+- added playbook to display sddm config in KDE system settings
+- added comments to `install_kvantum.yaml`
+
 ## prerelease 01-27-25
 - added playbook to enable Rootless Mode for Docker
 - added playbook to install ProtonVPN
