@@ -1,0 +1,58 @@
+---
+- name: Install and setup utilities for UTM shared clipboard and directory
+  hosts: localhost
+  connection: local
+  become: true
+  vars_files:
+    - ../vars.yaml
+  vars_prompt:
+
+    - name: shared_dir
+      prompt: "Enter the shared directory name"
+      private: false
+
+  tasks:
+
+    - name: Install required packages
+      ansible.builtin.apt:
+        pkg:
+          - spice-vdagent
+          - bindfs
+        clean: true
+
+    - name: Setup clipboard sharing
+      block:
+
+        - name: Start spice-vdagent service
+          ansible.builtin.systemd_service:
+            name: spice-vdagentd
+            state: started
+
+        - name: Run spice-vdagent # noqa: no-changed-when
+          ansible.builtin.command:
+            cmd: spice-vdagent
+
+    - name: Setup directory sharing
+      block:
+
+        - name: Create shared directory mount
+          ansible.builtin.file:
+            path: /mnt/{{ shared_dir }}
+            state: directory
+            mode: "0755"
+
+        - name: Create bindfs mount directory
+          ansible.builtin.file:
+            path: /home/{{ user }}/{{ shared_dir }}
+            state: directory
+            mode: "0755"
+
+        # noqa: yaml[line-length]
+        - name: Update fstab
+          ansible.builtin.blockinfile:
+            path: /etc/fstab
+            block: |
+              # UTM Shared Folder
+              share /mnt/{{ shared_dir }} 9p trans=virtio,version=9p2000.L,rw,_netdev,nofail,auto 0 0
+              # bindfs mount to remap UID/GID
+              /mnt/{{ shared_dir }} /home/{{ user }}/{{ shared_dir }} fuse.bindfs map=501/1000:@20/@1000,x-systemd.requires=/mnt/{{ shared_dir }},_netdev,nofail,auto 0 0

@@ -171,6 +171,8 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
 - created playbook to set up [rootless Docker](https://docs.docker.com/engine/security/rootless/)
 - created playbook to install configuration settings for SDDM when using KDE
   Plasma 6 on Debian testing version
+- created playbook to enable clipboard and directory sharing through VirtFS 
+  with, [UTM](https://getutm.app/) when spinning up VMs
 
 see [CHANGELOG](./CHANGELOG.md) for full details.
 
@@ -179,9 +181,6 @@ see [CHANGELOG](./CHANGELOG.md) for full details.
 <a id="future_dev"></a>
 ## future development
 
-- include `spice-vdagent` and `bindfs` in provisioning scripts to enable 
-  clipboard sharing and directory sharing through VirtFS, as i use 
-  [UTM](https://getutm.app/) to spin up VMs
 - write unit and integration tests where applicable
 - set up debug points and prompts where applicable
 - review existing cmake modules for possible inclusion

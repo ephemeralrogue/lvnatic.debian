@@ -1,6 +1,8 @@
 ## prerelease 01-28-25
 - added playbook to display sddm config in KDE system settings
 - added comments to `install_kvantum.yaml`
+- added playbook to enable UTM sharing utilities
+- added `.yamllint` config to modify linting rules
 
 ## prerelease 01-27-25
 - added playbook to enable Rootless Mode for Docker
