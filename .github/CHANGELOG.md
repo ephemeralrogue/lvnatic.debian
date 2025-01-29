@@ -4,6 +4,7 @@
 - added playbook to enable UTM sharing utilities
 - added `.yamllint` config to modify linting rules
 - revised project to support Debian 12+
+- added tasks and updated `install_docker.yaml` playbook to set logging driver
 
 ## prerelease 01-27-25
 - added playbook to enable Rootless Mode for Docker

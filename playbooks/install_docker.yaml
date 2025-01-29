@@ -25,20 +25,16 @@
           - uidmap # for rootless Docker
         clean: true
 
-    - name: Add user to Docker group
-      ansible.builtin.user:
-        name: '{{ user }}'
-        groups:
-          - docker
-        append: true
-
-    - name: Print reminder to set logging driver
-      ansible.builtin.debug:
-        msg: >
-          Docker install is complete. Once provisioning is completed, remem
-          ber to set the logging driver in /etc/docker/daemon.json
-
     - name: Clear cache
       ansible.builtin.apt:
         autoclean: true
         autoremove: true
+
+    - name: Run Post-Install tasks
+      ansible.builtin.include_tasks: tasks/docker_post_install.yaml
+
+    - name: Print reminder to set logging driver
+      ansible.builtin.pause:
+        prompt: |
+          Docker install is complete. Once provisioning is completed, remember to set the logging driver in /etc/docker/daemon.json
+          Default is json-file. For more information, see https://docs.docker.com/engine/logging/drivers/json-file/
