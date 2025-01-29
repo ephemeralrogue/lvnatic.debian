@@ -1,0 +1,20 @@
+- name: Add user to Docker group
+  ansible.builtin.user:
+    name: '{{ user }}'
+    groups:
+      - docker
+    append: true
+
+- name: Set Logging Driver
+  ansible.builtin.copy:
+    dest: /etc/docker/daemon.json
+    content: |
+      {
+          "log-driver": "json-file",
+          "log-opts": {
+              "compress": "true",
+              "max-file": "5",
+              "max-size": "10m"
+          }
+      }
+    mode: '0644'
