@@ -4,4 +4,6 @@ vars.yaml
 # KICS
 results.json
 
-fragments.bak/
+# Ansible
+.ansible/
+ansible.cfg

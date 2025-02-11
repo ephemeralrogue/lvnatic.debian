@@ -3,75 +3,72 @@ releases:
   1.0.0:
     changes:
       release_summary: 'Initial release of ephemeralrogue.debian.
-
         This release includes a number of playbooks designed to quickly provision
         Debian systems.'
     fragments:
-    - 1.0.0.yaml
-    - add-code.yaml
-    - add-docker.yaml
-    - add-gh.yaml
-    - add-git-config.yaml
-    - add-kubectl.yaml
-    - add-kvantum.yaml
-    - add-minikube.yaml
-    - add-proton-vpn.yaml
-    - add-provision-debian.yaml
-    - add-remove-apt-packages.yaml
-    - add-rootless-docker.yaml
-    - add-sddm.yaml
-    - add-utm-shared.yaml
-    - add-warp-terminal.yaml
+      - 1.0.0.yaml
+      - add-code.yaml
+      - add-docker.yaml
+      - add-gh.yaml
+      - add-git-config.yaml
+      - add-kubectl.yaml
+      - add-kvantum.yaml
+      - add-minikube.yaml
+      - add-proton-vpn.yaml
+      - add-provision-debian.yaml
+      - add-remove-apt-packages.yaml
+      - add-rootless-docker.yaml
+      - add-sddm.yaml
+      - add-utm-shared.yaml
+      - add-warp-terminal.yaml
     objects:
       playbook:
-      - description: set the global git configuration with a set of options
-        name: git_config
-        namespace: null
-      - description: installs dependencies, signing key, and apt repository for VS
-          Code and installs VS Code
-        name: install_code
-        namespace: null
-      - description: 'removes prior installs of Docker, installs dependencies, signing
-          key , and apt repository for Docker and installs Docker and Compose
-
-          '
-        name: install_docker
-        namespace: null
-      - description: installs dependencies, signing key, and apt repository for GitHub
-          CLI and installs GitHub CLI
-        name: install_gh
-        namespace: null
-      - description: installs package to configure sddm natively through KDE settings
-        name: install_kdeconfigsddm
-        namespace: null
-      - description: installs signing key, and apt repository for kubectl and installs
-          kubectl
-        name: install_kubectl
-        namespace: null
-      - description: installs dependencies and clones, builds, makes, installs Kvantum
-        name: install_kvantum
-        namespace: null
-      - description: installs kubectl if not already present, and retrieves, installs,
-          and removed deb
-        name: install_minikube
-        namespace: null
-      - description: retrieves to install signing key and source, and installs ProtonVPN
-        name: install_protonvpn
-        namespace: null
-      - description: retrieves, installs, and removes Warp Terminal deb
-        name: install_warp
-        namespace: null
-      - description: runs a series of playbooks to provision a Debian system
-        name: provision_debian
-        namespace: null
-      - description: removes numerous preloaded packages from a Debian system
-        name: remove_apt_packages
-        namespace: null
-      - description: executes pre-installed script to run Docker in Rootless Mode
-        name: rootless_docker
-        namespace: null
-      - description: installs dependencies, inserts code, run shell commands to configure
-          UTM Shared clipboard and directory
-        name: utm_shared
-        namespace: null
+        - description: set the global git configuration with a set of options
+          name: git_config
+          namespace: null
+        - description: installs dependencies, signing key, and apt repository for VS
+            Code and installs VS Code
+          name: install_code
+          namespace: null
+        - description: 'removes prior installs of Docker, installs dependencies, signing
+            key , and apt repository for Docker and installs Docker and Compose'
+          name: install_docker
+          namespace: null
+        - description: installs dependencies, signing key, and apt repository for GitHub
+            CLI and installs GitHub CLI
+          name: install_gh
+          namespace: null
+        - description: installs package to configure sddm natively through KDE settings
+          name: install_kdeconfigsddm
+          namespace: null
+        - description: installs signing key, and apt repository for kubectl and installs
+            kubectl
+          name: install_kubectl
+          namespace: null
+        - description: installs dependencies and clones, builds, makes, installs Kvantum
+          name: install_kvantum
+          namespace: null
+        - description: installs kubectl if not already present, and retrieves, installs,
+            and removed deb
+          name: install_minikube
+          namespace: null
+        - description: retrieves to install signing key and source, and installs ProtonVPN
+          name: install_protonvpn
+          namespace: null
+        - description: retrieves, installs, and removes Warp Terminal deb
+          name: install_warp
+          namespace: null
+        - description: runs a series of playbooks to provision a Debian system
+          name: provision_debian
+          namespace: null
+        - description: removes numerous preloaded packages from a Debian system
+          name: remove_apt_packages
+          namespace: null
+        - description: executes pre-installed script to run Docker in Rootless Mode
+          name: rootless_docker
+          namespace: null
+        - description: installs dependencies, inserts code, run shell commands to configure
+            UTM Shared clipboard and directory
+          name: utm_shared
+          namespace: null
     release_date: '2025-02-10'
