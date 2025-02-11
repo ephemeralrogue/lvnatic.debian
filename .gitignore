@@ -3,3 +3,7 @@ vars.yaml
 
 # KICS
 results.json
+
+# Ansible
+.ansible/
+ansible.cfg
