@@ -49,7 +49,7 @@ options. Additionally, other playbooks are provided to install:
 
 That's pretty much it at the moment!
 
-> [!INFO]
+> [!NOTE]
 > This isn't lunatic in any sense. I just liked the name.
 
 # Contents
