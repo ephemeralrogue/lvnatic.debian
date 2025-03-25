@@ -1,27 +1,32 @@
-<h1 align="center">{ e }.debian ansible collection</h1>
-
-<p align="center">
-  <img src="./assets/e.debian-emblem.png" alt="ephemeralrogue.debian-emblem" width="120px" height="120px"/>
+<div align="center">
+  <img
+    src="./assets/e.debian-emblem.png"
+    alt="ephemeralrogue.debian-emblem"
+    width="256px"
+  />
   <br>
-  <i>ephemeralrogue.debian is an Ansible collection written to provision
+  <br>
+  <h1>lvnatic.debian</h1>
+  <i>lvnatic.debian is an Ansible collection written to provision
     <br> Debian 12+ virtual machines locally.</i>
   <br>
-</p>
+</div>
 
-<p align="center">
+<div align="center">
   <a href="https://docs.ansible.com/ansible/latest/collections_guide/index.html">
   using ansible collections</a>
   •
-  <a href="https://discord.gg/nh7mqGEfbw">ephemeralrogue's Discord Server</a>
+  <a href="https://discord.gg/nh7mqGEfbw">L V N A C Y Discord</a>
   •
   <a href="https://blog.ephemeralrogue.xyz/detour-through-ansible#heading-ephemeralroguebookworm">project writeup</a>
   <br>
-</p>
-<hr>
+</div>
+<br>
+<br>
 
-## the quick and dirty
+# The Quick and Dirty
 
-this collection is written for the express purpose of provisioning Debian 
+This collection is written for the express purpose of provisioning Debian 
 v12+ virtual machines (VM) locally. The primary playbook prepares the 
 environment for and installs the following packages:
 
@@ -33,7 +38,7 @@ environment for and installs the following packages:
 - [Warp Terminal](warp.dev)
 
 and configures Docker to run in Rootless Mode and git with my preferred 
-options. additionally, other playbooks are provided to install:
+options. Additionally, other playbooks are provided to install:
 
 - [Minikube](https://minikube.sigs.k8s.io/docs/)
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/kubectl/)
@@ -42,10 +47,12 @@ options. additionally, other playbooks are provided to install:
 - [kde-config-sddm](https://packages.debian.org/experimental/kde-config-sddm) 
   for the test version of Debian: Trixie, when installed with KDE Plasma
 
-that's pretty much it at the moment!
+That's pretty much it at the moment!
 
-<a id="contents"></a>
-## contents
+> [!INFO]
+> This isn't lunatic in any sense. I just liked the name.
+
+# Contents
 
 - [usage](#usage)
   - [running playbooks locally](#usage_local)
@@ -54,16 +61,16 @@ that's pretty much it at the moment!
 - [future development](#future_dev)
 - [contributing](#contributing)
 
-<a id="usage"></a>
-## usage
 
-this collection is not yet ready to be uploaded to Ansible Galaxy, therefore 
+# Usage
+
+This collection is not yet ready to be uploaded to Ansible Galaxy, therefore 
 the best way to make use of it at the moment is to clone it to the machine 
 on which you want to locally run playbooks.  
 *note: the {{ user }} variable assumes you are using the same username on 
 your system as you will use for git.*
 
-1. to get started, you'll need to set up passwordless sudo:
+1. To get started, you'll need to set up passwordless sudo:
 
     ```sh
     sudo visudo
@@ -105,10 +112,9 @@ your system as you will use for git.*
 
 [back to contents](#contents)
 
-<a id="usage_local"></a>
-### running playbooks locally
+## Running Playbooks Locally
 
-the main playbook is `provision_debian.yaml` and can be run as such:
+The main playbook is `provision_debian.yaml` and can be run as such:
 ```bash
 ansible-playbook -i 127.0.0.1, playbooks/provision_debian_bookworm.yaml
 ```
@@ -119,7 +125,7 @@ a basic set of development tools for both
 [Bookworm](https://www.debian.org/releases/bookworm/) and 
 [Trixie](https://www.debian.org/releases/trixie/).
 
-other playbooks you can run to install apps independently are:
+Other playbooks you can run to install apps independently are:
 
 - install_code.yaml
 - install_docker.yaml
@@ -131,7 +137,7 @@ other playbooks you can run to install apps independently are:
 - install_protonvpn.yaml
 - install_warp.yaml
 
-to install VS Code, Docker, GitHub CLI, `kde-config-sddm` (for Debian Trixie), 
+To install VS Code, Docker, GitHub CLI, `kde-config-sddm` (for Debian Trixie), 
 kubectl, Kvantum Manager (for Debian Trixie), Minikube, ProtonVPN, and Warp 
 Terminal, respectively. note that kubectl will be installed as part of the 
 Minikube playbook. in addtion, the following playbooks can be run on their own:
@@ -141,16 +147,16 @@ Minikube playbook. in addtion, the following playbooks can be run on their own:
 - remove_apt_packages.yaml
 - rootless_docker.yaml
 
-more playbooks will be added as other tools become more prominent in my 
+More playbooks will be added as other tools become more prominent in my 
 development, design, or general enjoyment process.
 
-*note: when running the main provisioning or git config playbooks, you will 
-be prompted to designate default branch and remote names.*
+> [!NOTE]
+> When running the main provisioning or git config playbooks, you will 
+> be prompted to designate default branch and remote names.
 
 [back to contents](#contents)
 
-<a id="usage_remote"></a>
-### running playbooks on remote hosts
+## Running Playbooks On Remote Hosts
 
 if you want to run these playbooks on remote nodes, you'll need to edit 
 the `hosts` directive on the playbooks. checkout a new branch, make your 
@@ -159,8 +165,7 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
 
 [back to contents](#contents)
 
-<a id="updates"></a>
-## project updates
+# Project Updates
 
 - [warp terminal](https://www.warp.dev/) tasks were added to retrieve gpg 
   key and add apt repository to source list. Warp install is now automated.
@@ -178,22 +183,20 @@ inventory flag `-i`, you can pass an inventory file or hosts directive.
   with, [UTM](https://getutm.app/) when spinning up VMs
 - reconfigured project to support Debian 12+
 
-see [CHANGELOG](./CHANGELOG.md) for full details.
+See [CHANGELOG](./CHANGELOG.md) for full details.
 
 [back to contents](#contents)
 
-<a id="future_dev"></a>
-## future development
+# Future Development
 
-- find cmake module with support for current Ansible versions
-- write unit and integration tests where applicable
-- set up debug points and prompts where applicable
-- review existing cmake modules for possible inclusion
+- Find cmake module with support for current Ansible versions
+- Write unit and integration tests where applicable
+- Set up debug points and prompts where applicable
+- Review existing cmake modules for possible inclusion
 
 [back to contents](#contents)
 
-<a id="contributing"></a>
-## contributing
+# Contributing
 
 if you would like to contribute to this project, feel free to fork and write! 
 please adhere to most best practices as developed by the Ansible community. 
